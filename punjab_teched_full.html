@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Punjab State Board of Technical Education & Industrial Training</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins',sans-serif;background:#f0f4f8;color:#1a2332}
+.site-wrapper{max-width:1100px;margin:0 auto;background:#fff;box-shadow:0 0 20px rgba(0,0,0,.1)}
+
+/* PAGE SYSTEM */
+.page{display:none}
+.page.active{display:block}
+
+/* TOP BAR */
+.topbar{background:#1a3a6e;color:#fff;font-size:12px;padding:5px 20px;display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:#ffd700;text-decoration:none;margin-left:12px;cursor:pointer}
+.marquee-wrap{flex:1;overflow:hidden;margin:0 16px}
+.marquee-inner{white-space:nowrap;animation:scroll 30s linear infinite;color:#ffe082}
+@keyframes scroll{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#1a3a6e 0%,#2456a4 60%,#1a7a3a 100%);padding:16px 20px;display:flex;align-items:center;gap:16px;cursor:pointer}
+.header-logo{width:72px;height:72px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo-emblem{font-size:28px;font-weight:700;color:#1a3a6e}
+.header-text h1{color:#fff;font-size:22px;font-weight:700;font-family:'Noto Serif',serif;line-height:1.2}
+.header-text p{color:#ffe082;font-size:13px;margin-top:4px}
+.header-flags{display:flex;gap:8px;align-items:center}
+.flag-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:4px;padding:4px 10px;color:#fff;font-size:11px;font-weight:500}
+
+/* NAV */
+nav{background:#2456a4;position:relative;z-index:100}
+.nav-list{list-style:none;display:flex;flex-wrap:wrap}
+.nav-list>li{position:relative}
+.nav-list>li>a{display:block;padding:11px 16px;color:#fff;text-decoration:none;font-size:13px;font-weight:500;transition:background .2s;white-space:nowrap;cursor:pointer}
+.nav-list>li>a:hover,.nav-list>li.nav-active>a{background:#1a7a3a}
+.dropdown{display:none;position:absolute;top:100%;left:0;background:#fff;border:1px solid #d0d8e8;border-top:2px solid #1a7a3a;min-width:200px;z-index:200;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.nav-list>li:hover .dropdown{display:block}
+.dropdown a{display:block;padding:9px 16px;font-size:13px;color:#1a2332;text-decoration:none;border-bottom:1px solid #eef;cursor:pointer}
+.dropdown a:hover{background:#f0f4f8;color:#2456a4}
+
+/* QUICK LINKS */
+.quick-links{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:2px solid #e8eff7}
+.ql-item{display:flex;flex-direction:column;align-items:center;padding:14px 8px;border-right:1px solid #e8eff7;text-decoration:none;color:#1a2332;transition:.2s;cursor:pointer}
+.ql-item:last-child{border-right:none}
+.ql-item:hover{background:#f0f4f8}
+.ql-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:6px}
+.ql-item span{font-size:11px;font-weight:500;text-align:center;color:#2456a4}
+
+/* BREADCRUMB */
+.breadcrumb{background:#e8eff7;padding:8px 20px;font-size:12px;color:#555;border-bottom:1px solid #d0d8e8}
+.breadcrumb a{color:#2456a4;cursor:pointer;text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{margin:0 6px;color:#999}
+
+/* PAGE HEADER BANNER */
+.page-hero{background:linear-gradient(135deg,#1a3a6e,#2456a4);padding:28px 24px;color:#fff}
+.page-hero h2{font-size:24px;font-weight:700;font-family:'Noto Serif',serif}
+.page-hero p{color:#ffe082;font-size:13px;margin-top:6px}
+
+/* INNER CONTENT */
+.inner-content{padding:20px}
+.section-heading{font-size:16px;font-weight:600;color:#1a3a6e;border-left:4px solid #ffd700;padding-left:10px;margin-bottom:16px}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.info-card{border:1px solid #d0d8e8;border-radius:6px;padding:16px;transition:.2s}
+.info-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08);border-color:#2456a4}
+.info-card .ic-icon{font-size:28px;margin-bottom:8px}
+.info-card h4{font-size:13px;font-weight:600;color:#1a3a6e;margin-bottom:6px}
+.info-card p{font-size:12px;color:#666;line-height:1.5}
+.info-card .ic-btn{display:inline-block;margin-top:10px;background:#2456a4;color:#fff;font-size:11px;padding:5px 12px;border-radius:4px;cursor:pointer;border:none;font-family:'Poppins',sans-serif}
+.info-card .ic-btn:hover{background:#1a3a6e}
+
+/* TABLE STYLE */
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:20px}
+.data-table th{background:#1a3a6e;color:#fff;padding:10px 12px;text-align:left;font-weight:500}
+.data-table td{padding:9px 12px;border-bottom:1px solid #eef2f8}
+.data-table tr:hover td{background:#f8fbff}
+.data-table .badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:500}
+.badge-green{background:#d4edda;color:#1a7a3a}
+.badge-red{background:#f8d7da;color:#a32d2d}
+.badge-yellow{background:#fff3cd;color:#856404}
+.badge-blue{background:#d1ecf1;color:#0c5460}
+
+/* FORM */
+.form-section{background:#f8fbff;border:1px solid #d0d8e8;border-radius:6px;padding:20px;margin-bottom:20px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-row.full{grid-template-columns:1fr}
+.form-group label{display:block;font-size:12px;font-weight:500;color:#1a3a6e;margin-bottom:5px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:9px 12px;border:1px solid #d0d8e8;border-radius:4px;font-size:13px;font-family:'Poppins',sans-serif;color:#1a2332;background:#fff}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#2456a4;box-shadow:0 0 0 3px rgba(36,86,164,.1)}
+.form-group textarea{resize:vertical;min-height:80px}
+.submit-btn{background:#1a7a3a;color:#fff;border:none;padding:11px 28px;border-radius:4px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:.2s}
+.submit-btn:hover{background:#145f2d}
+.reset-btn{background:#6c757d;color:#fff;border:none;padding:11px 20px;border-radius:4px;font-size:13px;cursor:pointer;font-family:'Poppins',sans-serif;margin-left:10px}
+
+/* RESULT BOX */
+.result-box{background:#e8f5e9;border:2px solid #1a7a3a;border-radius:8px;padding:20px;margin-top:20px;display:none}
+.result-box h3{color:#1a7a3a;margin-bottom:12px;font-size:16px}
+.result-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #c8e6c9;font-size:13px}
+.result-row:last-child{border-bottom:none}
+.result-row strong{color:#1a2332}
+
+/* NOTICE BOARD */
+.notice-board{border:1px solid #d0d8e8;margin-bottom:16px}
+.section-title-bar{font-size:15px;font-weight:600;color:#fff;background:#2456a4;padding:8px 14px;border-left:4px solid #ffd700}
+.notice-list{list-style:none}
+.notice-list li{padding:9px 14px;border-bottom:1px solid #eef2f8;font-size:13px;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.notice-list li:hover{background:#f8fbff}
+.new-badge{background:#c00;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;flex-shrink:0;margin-top:2px}
+.notice-list a{color:#2456a4;text-decoration:none;cursor:pointer}
+.notice-list a:hover{text-decoration:underline}
+
+/* HOME LAYOUT */
+.main-layout{display:grid;grid-template-columns:1fr 280px;gap:0}
+.content-area{padding:16px}
+.banner{background:#1a3a6e;overflow:hidden;position:relative;height:240px}
+.banner-slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .8s}
+.banner-slide.active{opacity:1}
+.slide-bg{position:absolute;inset:0}
+.slide-content{position:relative;z-index:2;text-align:center;color:#fff;padding:20px}
+.slide-content h2{font-size:26px;font-weight:700;font-family:'Noto Serif',serif;text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.slide-content p{font-size:14px;margin-top:8px;color:#ffe082}
+.slide-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:3}
+.dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;border:none;transition:.2s}
+.dot.active{background:#ffd700}
+.slide-overlay{position:absolute;inset:0;background:rgba(26,58,110,.55);z-index:1}
+.stat-row{display:flex;gap:10px;margin-bottom:16px;margin-top:14px}
+.stat-box{flex:1;background:#2456a4;color:#fff;padding:12px;text-align:center;border-radius:4px}
+.stat-box .num{font-size:22px;font-weight:700;color:#ffd700}
+.stat-box .lbl{font-size:11px;margin-top:2px;opacity:.85}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.home-info-card{border:1px solid #d0d8e8;padding:12px}
+.home-info-card h4{font-size:13px;font-weight:600;color:#1a3a6e;margin-bottom:8px;border-bottom:1px solid #eef;padding-bottom:6px}
+.home-info-card p,.home-info-card li{font-size:12px;color:#444;line-height:1.6}
+.home-info-card ul{padding-left:16px}
+
+/* SIDEBAR */
+.sidebar{border-left:2px solid #2456a4;background:#f8fbff}
+.sidebar-section{border-bottom:1px solid #dde8f4}
+.sidebar-title{font-size:13px;font-weight:600;color:#fff;background:#1a3a6e;padding:8px 12px;border-left:3px solid #ffd700}
+.sidebar-content{padding:10px 12px}
+.links-list{list-style:none}
+.links-list li{padding:7px 0;border-bottom:1px solid #eef;font-size:12.5px}
+.links-list li:last-child{border-bottom:none}
+.links-list a{color:#2456a4;text-decoration:none;display:flex;align-items:center;gap:6px;cursor:pointer}
+.links-list a:hover{color:#1a7a3a;text-decoration:underline}
+.links-list a::before{content:'▶';font-size:9px;color:#1a7a3a;flex-shrink:0}
+
+/* ACCORDION */
+.accordion-item{border:1px solid #d0d8e8;border-radius:4px;margin-bottom:8px;overflow:hidden}
+.accordion-header{background:#f0f4f8;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:500;color:#1a3a6e;display:flex;justify-content:space-between;align-items:center}
+.accordion-header:hover{background:#e0e8f4}
+.accordion-body{display:none;padding:14px 16px;font-size:13px;color:#444;line-height:1.7;border-top:1px solid #d0d8e8}
+.accordion-body.open{display:block}
+
+/* INSTITUTE TABLE */
+.inst-filters{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.inst-filters select,.inst-filters input{padding:8px 12px;border:1px solid #d0d8e8;border-radius:4px;font-size:13px;font-family:'Poppins',sans-serif}
+.inst-filters button{background:#2456a4;color:#fff;border:none;padding:8px 16px;border-radius:4px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px}
+
+/* DOWNLOAD SECTION */
+.download-list{list-style:none}
+.download-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border:1px solid #d0d8e8;border-radius:4px;margin-bottom:8px;transition:.2s}
+.download-item:hover{background:#f0f4f8;border-color:#2456a4}
+.download-item .dl-info{display:flex;align-items:center;gap:10px;font-size:13px}
+.download-item .dl-icon{font-size:22px}
+.download-item .dl-title{font-weight:500;color:#1a2332}
+.download-item .dl-meta{font-size:11px;color:#888;margin-top:2px}
+.dl-btn{background:#1a7a3a;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:12px;cursor:pointer;font-family:'Poppins',sans-serif}
+.dl-btn:hover{background:#145f2d}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-card{border:1px solid #d0d8e8;border-radius:6px;padding:18px}
+.contact-card h4{font-size:14px;font-weight:600;color:#1a3a6e;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.contact-detail{font-size:13px;color:#444;line-height:1.9}
+
+/* TENDER */
+.tender-card{border:1px solid #d0d8e8;border-radius:6px;padding:16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.tender-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.tender-title{font-size:13px;font-weight:600;color:#1a3a6e;margin-bottom:4px}
+.tender-meta{font-size:12px;color:#666}
+.tender-actions{display:flex;gap:8px;flex-shrink:0}
+.tender-btn{border:none;padding:6px 12px;border-radius:4px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif;font-weight:500}
+.t-view{background:#e8f0fb;color:#2456a4}
+.t-download{background:#1a7a3a;color:#fff}
+
+/* ALERT */
+.alert{padding:12px 16px;border-radius:4px;font-size:13px;margin-bottom:16px;display:flex;align-items:flex-start;gap:8px}
+.alert-success{background:#d4edda;border:1px solid #c3e6cb;color:#155724}
+.alert-info{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460}
+.alert-warning{background:#fff3cd;border:1px solid #ffeeba;color:#856404}
+
+/* FOOTER */
+.footer-links{background:#1a3a6e;padding:16px 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.footer-col h5{color:#ffd700;font-size:12px;font-weight:600;margin-bottom:8px}
+.footer-col a{display:block;color:#b8cce8;font-size:11.5px;text-decoration:none;margin-bottom:4px;cursor:pointer}
+.footer-col a:hover{color:#fff}
+.footer-bottom{background:#0f2447;color:#8a9dc0;font-size:11px;padding:10px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-box{background:#fff;border-radius:8px;padding:24px;max-width:400px;width:90%;text-align:center}
+.modal-box h3{color:#1a7a3a;margin-bottom:8px}
+.modal-box p{font-size:13px;color:#555;margin-bottom:16px}
+.modal-box button{background:#2456a4;color:#fff;border:none;padding:9px 24px;border-radius:4px;cursor:pointer;font-family:'Poppins',sans-serif;font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <div style="font-size:40px;margin-bottom:8px">✅</div>
+    <h3 id="modal-title">Success!</h3>
+    <p id="modal-msg">Your form has been submitted successfully.</p>
+    <button onclick="closeModal()">OK</button>
+  </div>
+</div>
+
+<div class="site-wrapper">
+
+  <!-- TOP BAR (shared) -->
+  <div class="topbar">
+    <div class="marquee-wrap">
+      <div class="marquee-inner">📢 Applications open for Diploma Admission 2025-26 | Exam schedule released | 3rd Semester result declared | Online fee payment portal now active | Scholarship forms available at institute level</div>
+    </div>
+    <div>
+      <a onclick="goPage('home')">🏠 Home</a>
+      <a onclick="goPage('contact')">Contact</a>
+      <a>हिंदी</a>
+    </div>
+  </div>
+
+  <!-- HEADER (shared) -->
+  <div class="header" onclick="goPage('home')">
+    <div class="header-logo"><div class="logo-emblem">PT</div></div>
+    <div class="header-text" style="flex:1">
+      <h1>Punjab State Board of Technical Education & Industrial Training</h1>
+      <p>Government of Punjab | ਪੰਜਾਬ ਰਾਜ ਤਕਨੀਕੀ ਸਿੱਖਿਆ ਅਤੇ ਉਦਯੋਗਿਕ ਸਿਖਲਾਈ ਬੋਰਡ</p>
+    </div>
+    <div class="header-flags">
+      <div class="flag-badge">ISO Certified</div>
+      <div class="flag-badge">Govt. of Punjab</div>
+    </div>
+  </div>
+
+  <!-- NAV (shared) -->
+  <nav>
+    <ul class="nav-list">
+      <li id="nav-home" class="nav-active"><a onclick="goPage('home')">Home</a></li>
+      <li id="nav-about"><a onclick="goPage('about')">About Us ▾</a>
+        <div class="dropdown">
+          <a onclick="goPage('about')">Introduction</a>
+          <a onclick="goPage('about')">Organisational Setup</a>
+          <a onclick="goPage('about')">Vision & Mission</a>
+          <a onclick="goPage('about')">Board of Governors</a>
+        </div>
+      </li>
+      <li id="nav-admissions"><a onclick="goPage('admissions')">Admissions ▾</a>
+        <div class="dropdown">
+          <a onclick="goPage('admissions')">Diploma Programmes</a>
+          <a onclick="goPage('admissions')">Admission Schedule</a>
+          <a onclick="goPage('admissions')">Prospectus 2025-26</a>
+          <a onclick="goPage('admissions')">Online Application</a>
+        </div>
+      </li>
+      <li id="nav-exams"><a onclick="goPage('exams')">Examinations ▾</a>
+        <div class="dropdown">
+          <a onclick="goPage('exams')">Exam Schedule</a>
+          <a onclick="goPage('results')">Result Declaration</a>
+          <a onclick="goPage('exams')">Re-evaluation</a>
+          <a onclick="goPage('exams')">Migration Certificate</a>
+        </div>
+      </li>
+      <li id="nav-institutes"><a onclick="goPage('institutes')">Institutes ▾</a>
+        <div class="dropdown">
+          <a onclick="goPage('institutes')">Govt. Polytechnic Institutes</a>
+          <a onclick="goPage('institutes')">Private Institutes</a>
+          <a onclick="goPage('institutes')">ITI List</a>
+        </div>
+      </li>
+      <li id="nav-downloads"><a onclick="goPage('downloads')">Downloads</a></li>
+      <li id="nav-results"><a onclick="goPage('results')">Results</a></li>
+      <li id="nav-tenders"><a onclick="goPage('tenders')">Tenders</a></li>
+      <li id="nav-contact"><a onclick="goPage('contact')">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- QUICK LINKS (shared) -->
+  <div class="quick-links">
+    <div class="ql-item" onclick="goPage('admissions')">
+      <div class="ql-icon" style="background:#e8f0fb">📋</div>
+      <span>Apply Online</span>
+    </div>
+    <div class="ql-item" onclick="goPage('results')">
+      <div class="ql-icon" style="background:#eafbe8">📊</div>
+      <span>Check Result</span>
+    </div>
+    <div class="ql-item" onclick="goPage('exams')">
+      <div class="ql-icon" style="background:#fef8e8">📅</div>
+      <span>Exam Schedule</span>
+    </div>
+    <div class="ql-item" onclick="goPage('downloads')">
+      <div class="ql-icon" style="background:#fbe8e8">📥</div>
+      <span>Downloads</span>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: HOME ===================== -->
+  <div class="page active" id="page-home">
+    <div class="main-layout">
+      <div class="content-area">
+        <div class="banner" id="banner">
+          <div class="banner-slide active">
+            <div class="slide-bg" style="background:linear-gradient(120deg,#0f2447,#2456a4)"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <h2>Diploma Admissions 2025–26</h2>
+              <p>Applications are now open for all Diploma programmes</p>
+              <button onclick="goPage('admissions')" style="margin-top:14px;background:#ffd700;color:#1a2332;border:none;padding:9px 22px;border-radius:4px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif">Apply Now →</button>
+            </div>
+          </div>
+          <div class="banner-slide">
+            <div class="slide-bg" style="background:linear-gradient(120deg,#0f3320,#1a7a3a)"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <h2>Semester Results Declared</h2>
+              <p>3rd Semester results are now available on the portal</p>
+              <button onclick="goPage('results')" style="margin-top:14px;background:#ffd700;color:#1a2332;border:none;padding:9px 22px;border-radius:4px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif">Check Result →</button>
+            </div>
+          </div>
+          <div class="banner-slide">
+            <div class="slide-bg" style="background:linear-gradient(120deg,#3a0f0f,#a32d2d)"></div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+              <h2>Scholarship Scheme 2025</h2>
+              <p>Post-Matric scholarship applications invited from eligible students</p>
+              <button onclick="goPage('downloads')" style="margin-top:14px;background:#ffd700;color:#1a2332;border:none;padding:9px 22px;border-radius:4px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif">Download Form →</button>
+            </div>
+          </div>
+          <div class="slide-dots">
+            <button class="dot active" onclick="goSlide(0)"></button>
+            <button class="dot" onclick="goSlide(1)"></button>
+            <button class="dot" onclick="goSlide(2)"></button>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="num">320+</div><div class="lbl">Affiliated Institutes</div></div>
+          <div class="stat-box"><div class="num">85,000+</div><div class="lbl">Students Enrolled</div></div>
+          <div class="stat-box"><div class="num">42</div><div class="lbl">Diploma Programmes</div></div>
+          <div class="stat-box" style="background:#1a7a3a"><div class="num">98%</div><div class="lbl">Pass Rate 2024</div></div>
+        </div>
+        <div class="notice-board">
+          <div class="section-title-bar">📌 Notice Board / Latest Updates</div>
+          <ul class="notice-list">
+            <li><span class="new-badge">NEW</span><div><a onclick="goPage('admissions')">Diploma Admission 2025-26: Online application portal activated. Last date: 31 July 2025.</a></div></li>
+            <li><span class="new-badge">NEW</span><div><a onclick="goPage('results')">3rd Semester Examination Results (April 2025) declared. Students may check via Result portal.</a></div></li>
+            <li><span class="new-badge">NEW</span><div><a onclick="goPage('exams')">Re-evaluation / Re-checking form open for odd semester examinations 2025.</a></div></li>
+            <li><div><a onclick="goPage('exams')">Important notice for ITI students regarding NCVT practical examination schedule May 2025.</a></div></li>
+            <li><div><a onclick="goPage('downloads')">Prospectus 2025-26 for Diploma in Engineering & Non-Engineering programmes now available.</a></div></li>
+            <li><div><a onclick="goPage('exams')">Online payment of examination fee portal active — pay before 15 May 2025.</a></div></li>
+            <li><div><a onclick="goPage('institutes')">List of approved private institutes for academic session 2025-26 published.</a></div></li>
+            <li><div><a onclick="goPage('admissions')">Sports quota seats available in govt. polytechnic institutes — apply by 20 May 2025.</a></div></li>
+            <li><div><a onclick="goPage('downloads')">Scholarship forms (Post-Matric) for SC/BC students available at institute offices.</a></div></li>
+            <li><div><a onclick="goPage('tenders')">New tenders published — view on Tenders page.</a></div></li>
+          </ul>
+        </div>
+        <div class="info-grid">
+          <div class="home-info-card">
+            <h4>About PSBTE&IT</h4>
+            <p>The Punjab State Board of Technical Education & Industrial Training is the apex body for conducting examinations, granting affiliations, and regulating diploma-level technical education across Punjab.</p>
+            <br><button onclick="goPage('about')" class="ic-btn" style="background:#2456a4;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif">Read More →</button>
+          </div>
+          <div class="home-info-card">
+            <h4>Popular Programmes</h4>
+            <ul>
+              <li>Diploma in Civil Engineering</li>
+              <li>Diploma in Mechanical Engineering</li>
+              <li>Diploma in Computer Science & Engg.</li>
+              <li>Diploma in Electronics & Communication</li>
+              <li>Diploma in Electrical Engineering</li>
+            </ul>
+            <br><button onclick="goPage('admissions')" class="ic-btn" style="background:#2456a4;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:11px;cursor:pointer;font-family:'Poppins',sans-serif">View All →</button>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="sidebar-section">
+          <div class="sidebar-title">🔗 Important Links</div>
+          <div class="sidebar-content">
+            <ul class="links-list">
+              <li><a onclick="goPage('admissions')">Online Admission Portal</a></li>
+              <li><a onclick="goPage('results')">Examination Result</a></li>
+              <li><a onclick="goPage('exams')">Migration Certificate</a></li>
+              <li><a onclick="goPage('exams')">Verification of Certificate</a></li>
+              <li><a onclick="goPage('exams')">Duplicate DMC / Certificate</a></li>
+              <li><a onclick="goPage('contact')">Student Grievance Portal</a></li>
+              <li><a onclick="goPage('downloads')">Scholarship Status</a></li>
+              <li><a onclick="goPage('admissions')">Fee Refund Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">🏛 External Links</div>
+          <div class="sidebar-content">
+            <ul class="links-list">
+              <li><a>Govt. of Punjab</a></li>
+              <li><a>AICTE India</a></li>
+              <li><a>NCVT MIS Portal</a></li>
+              <li><a>National Scholarship Portal</a></li>
+              <li><a>DGET, Ministry of Labour</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">📞 Contact</div>
+          <div class="sidebar-content" style="font-size:12.5px;line-height:1.8;color:#1a2332">
+            <strong>PSBTE&IT Head Office</strong><br>
+            Plot No. 1-A, Sector 36-A<br>
+            Chandigarh — 160 036<br><br>
+            📞 0172-2614649<br>
+            📧 info@punjabteched.com<br>
+            🕐 Mon–Fri: 9 AM – 5 PM
+          </div>
+        </div>
+        <div class="sidebar-section">
+          <div class="sidebar-title">📰 Tenders</div>
+          <div class="sidebar-content">
+            <ul class="links-list">
+              <li><a onclick="goPage('tenders')">E-Tender No. PSBTE/2025/04</a></li>
+              <li><a onclick="goPage('tenders')">Printing of Certificates 2025</a></li>
+              <li><a onclick="goPage('tenders')">IT Equipment Purchase Tender</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: ABOUT ===================== -->
+  <div class="page" id="page-about">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> About Us</div>
+    <div class="page-hero"><h2>About Us</h2><p>Punjab State Board of Technical Education & Industrial Training</p></div>
+    <div class="inner-content">
+      <div class="alert alert-info">📌 Established under the Punjab Act to regulate technical education and industrial training across the state.</div>
+      <h3 class="section-heading">Introduction</h3>
+      <p style="font-size:13px;line-height:1.8;color:#444;margin-bottom:16px">The Punjab State Board of Technical Education & Industrial Training (PSBTE&IT) is the apex body responsible for conducting examinations, granting affiliations to institutes, and regulating diploma-level technical education across the state of Punjab. The Board was established with a mandate to ensure quality technical education to the youth of Punjab, equipping them with industry-relevant skills and knowledge.</p>
+      <div class="card-grid">
+        <div class="info-card"><div class="ic-icon">🎯</div><h4>Vision</h4><p>To become a world-class technical education board offering quality education and skill development to every student of Punjab.</p></div>
+        <div class="info-card"><div class="ic-icon">🏆</div><h4>Mission</h4><p>Provide accessible, affordable, and quality technical education while maintaining the highest standards of examination and certification.</p></div>
+        <div class="info-card"><div class="ic-icon">⚖️</div><h4>Objectives</h4><p>Regulate, supervise, and develop diploma-level technical education and industrial training institutes across Punjab.</p></div>
+        <div class="info-card"><div class="ic-icon">🤝</div><h4>Industry Connect</h4><p>Bridge the gap between technical education and industry requirements through curriculum updates and internship programmes.</p></div>
+      </div>
+      <h3 class="section-heading">Organisational Setup</h3>
+      <table class="data-table">
+        <thead><tr><th>Position</th><th>Name</th><th>Department</th></tr></thead>
+        <tbody>
+          <tr><td>Chairman</td><td>Dr. Rajinder Singh</td><td>Technical Education</td></tr>
+          <tr><td>Secretary</td><td>Mrs. Harpreet Kaur</td><td>Administration</td></tr>
+          <tr><td>Controller of Examinations</td><td>Mr. Gurmail Singh</td><td>Examination</td></tr>
+          <tr><td>Director, Admissions</td><td>Dr. Sukhwinder Pal</td><td>Admissions</td></tr>
+          <tr><td>Deputy Secretary</td><td>Mr. Manpreet Sharma</td><td>Finance</td></tr>
+        </tbody>
+      </table>
+      <h3 class="section-heading">Frequently Asked Questions</h3>
+      <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">What is PSBTE&IT? <span>+</span></div><div class="accordion-body">Punjab State Board of Technical Education & Industrial Training is the regulatory body for diploma-level technical education in Punjab. It affiliates institutes, conducts exams, and issues certificates.</div></div>
+      <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">What programmes does the Board offer? <span>+</span></div><div class="accordion-body">The Board offers 3-year Diploma programmes in Engineering and Non-Engineering fields including Civil, Mechanical, Computer Science, Electronics, Electrical, IT, and more.</div></div>
+      <div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">How can I contact the Board? <span>+</span></div><div class="accordion-body">You can contact us at 0172-2614649 or email info@punjabteched.com. Office address: Plot No. 1-A, Sector 36-A, Chandigarh — 160 036.</div></div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: ADMISSIONS ===================== -->
+  <div class="page" id="page-admissions">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Admissions</div>
+    <div class="page-hero"><h2>Admissions 2025–26</h2><p>Online application portal for Diploma programmes is now open</p></div>
+    <div class="inner-content">
+      <div class="alert alert-warning">⏰ Last date for online application: <strong>31 July 2025</strong>. Apply now to secure your seat!</div>
+      <h3 class="section-heading">Available Diploma Programmes</h3>
+      <div class="card-grid">
+        <div class="info-card"><div class="ic-icon">🏗️</div><h4>Civil Engineering</h4><p>3-year diploma. Seats: 60. Focus on construction, surveying, and structural design.</p><button class="ic-btn" onclick="showModal('Applied!','Your interest in Civil Engineering has been noted. Fill the form below to apply.')">Apply Now</button></div>
+        <div class="info-card"><div class="ic-icon">⚙️</div><h4>Mechanical Engineering</h4><p>3-year diploma. Seats: 60. Covers manufacturing, thermodynamics, and machine design.</p><button class="ic-btn" onclick="showModal('Applied!','Your interest in Mechanical Engineering has been noted. Fill the form below to apply.')">Apply Now</button></div>
+        <div class="info-card"><div class="ic-icon">💻</div><h4>Computer Science & Engg.</h4><p>3-year diploma. Seats: 60. Programming, networking, databases and software development.</p><button class="ic-btn" onclick="showModal('Applied!','Your interest in CSE has been noted. Fill the form below to apply.')">Apply Now</button></div>
+        <div class="info-card"><div class="ic-icon">📡</div><h4>Electronics & Communication</h4><p>3-year diploma. Seats: 60. Digital electronics, communication systems, and IoT.</p><button class="ic-btn" onclick="showModal('Applied!','Your interest in ECE has been noted. Fill the form below to apply.')">Apply Now</button></div>
+        <div class="info-card"><div class="ic-icon">⚡</div><h4>Electrical Engineering</h4><p>3-year diploma. Seats: 60. Power systems, electrical machines, and installation.</p><button class="ic-btn" onclick="showModal('Applied!','Your interest in EE has been noted. Fill the form below to apply.')">Apply Now</button></div>
+        <div class="info-card"><div class="ic-icon">🖥️</div><h4>Information Technology</h4><p>3-year diploma. Seats: 60. Web development, cloud computing, and cybersecurity.</p><button class="ic-btn" onclick="showModal('Applied!','Your interest in IT has been noted. Fill the form below to apply.')">Apply Now</button></div>
+      </div>
+      <h3 class="section-heading">Online Application Form</h3>
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Enter your full name"></div>
+          <div class="form-group"><label>Father's Name *</label><input type="text" placeholder="Enter father's name"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Date of Birth *</label><input type="date"></div>
+          <div class="form-group"><label>Mobile Number *</label><input type="tel" placeholder="10-digit mobile number"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="Enter email address"></div>
+          <div class="form-group"><label>Category *</label><select><option>Select Category</option><option>General</option><option>SC/ST</option><option>OBC</option><option>EWS</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Programme Applied For *</label><select><option>Select Programme</option><option>Civil Engineering</option><option>Mechanical Engineering</option><option>Computer Science & Engg.</option><option>Electronics & Communication</option><option>Electrical Engineering</option><option>Information Technology</option></select></div>
+          <div class="form-group"><label>10th Board Percentage *</label><input type="number" placeholder="e.g. 78.5" min="0" max="100"></div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group"><label>Residential Address *</label><textarea placeholder="Enter full residential address"></textarea></div>
+        </div>
+        <button class="submit-btn" onclick="showModal('Application Submitted!','Your admission application has been submitted successfully. Your Application ID is APP2025' + Math.floor(Math.random()*90000+10000) + '. Keep this for future reference.')">Submit Application</button>
+        <button class="reset-btn" onclick="this.closest('.form-section').querySelectorAll('input,select,textarea').forEach(e=>e.value='')">Reset Form</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: EXAMINATIONS ===================== -->
+  <div class="page" id="page-exams">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Examinations</div>
+    <div class="page-hero"><h2>Examinations</h2><p>Schedule, admit cards, re-evaluation and migration certificates</p></div>
+    <div class="inner-content">
+      <h3 class="section-heading">Examination Schedule 2025</h3>
+      <table class="data-table">
+        <thead><tr><th>Examination</th><th>Semester</th><th>Start Date</th><th>End Date</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Odd Semester Theory</td><td>1st, 3rd, 5th</td><td>10 Nov 2025</td><td>30 Nov 2025</td><td><span class="badge badge-yellow">Upcoming</span></td></tr>
+          <tr><td>Even Semester Theory</td><td>2nd, 4th, 6th</td><td>15 Apr 2025</td><td>05 May 2025</td><td><span class="badge badge-green">Completed</span></td></tr>
+          <tr><td>Supplementary Exam</td><td>All Semesters</td><td>20 Jul 2025</td><td>10 Aug 2025</td><td><span class="badge badge-blue">Ongoing</span></td></tr>
+          <tr><td>NCVT Practical</td><td>ITI Final Year</td><td>01 May 2025</td><td>20 May 2025</td><td><span class="badge badge-green">Completed</span></td></tr>
+        </tbody>
+      </table>
+      <h3 class="section-heading">Download Admit Card</h3>
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group"><label>Roll Number *</label><input type="text" id="admit-roll" placeholder="Enter your roll number"></div>
+          <div class="form-group"><label>Date of Birth *</label><input type="date" id="admit-dob"></div>
+        </div>
+        <button class="submit-btn" onclick="handleAdmitCard()">Get Admit Card</button>
+      </div>
+      <h3 class="section-heading">Re-evaluation / Re-checking</h3>
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group"><label>Roll Number *</label><input type="text" placeholder="Enter roll number"></div>
+          <div class="form-group"><label>Subject Code *</label><input type="text" placeholder="Enter subject code"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Request Type *</label><select><option>Select Type</option><option>Re-evaluation</option><option>Re-checking</option></select></div>
+          <div class="form-group"><label>Payment Reference No.</label><input type="text" placeholder="Enter payment ref no."></div>
+        </div>
+        <button class="submit-btn" onclick="showModal('Request Submitted!','Your re-evaluation request has been submitted. Reference No: REV' + Math.floor(Math.random()*90000+10000))">Submit Request</button>
+      </div>
+      <h3 class="section-heading">Migration Certificate</h3>
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group"><label>Student Name *</label><input type="text" placeholder="Enter full name"></div>
+          <div class="form-group"><label>Enrollment Number *</label><input type="text" placeholder="Enter enrollment number"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Programme *</label><select><option>Select Programme</option><option>Civil Engineering</option><option>Mechanical Engineering</option><option>Computer Science & Engg.</option><option>Electrical Engineering</option><option>IT</option></select></div>
+          <div class="form-group"><label>Pass Year *</label><select><option>Select Year</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option></select></div>
+        </div>
+        <button class="submit-btn" onclick="showModal('Application Submitted!','Your Migration Certificate application has been submitted. It will be dispatched to your registered address within 15 working days.')">Apply for Migration Certificate</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: RESULTS ===================== -->
+  <div class="page" id="page-results">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Results</div>
+    <div class="page-hero"><h2>Examination Results</h2><p>Check your semester examination results here</p></div>
+    <div class="inner-content">
+      <div class="alert alert-success">✅ 3rd Semester Results (April 2025) have been declared. Enter your roll number to check.</div>
+      <h3 class="section-heading">Check Result</h3>
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group"><label>Roll Number *</label><input type="text" id="result-roll" placeholder="e.g. 25CE001"></div>
+          <div class="form-group"><label>Examination *</label><select id="result-exam"><option>Select Examination</option><option>Even Semester (April 2025)</option><option>Odd Semester (Nov 2024)</option><option>Supplementary (Jul 2024)</option></select></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Date of Birth *</label><input type="date" id="result-dob"></div>
+          <div class="form-group"><label>Programme *</label><select id="result-prog"><option>Select Programme</option><option>Civil Engineering</option><option>Mechanical Engineering</option><option>Computer Science & Engg.</option><option>Electrical Engineering</option><option>Electronics & Communication</option><option>IT</option></select></div>
+        </div>
+        <button class="submit-btn" onclick="showResult()">Get Result</button>
+      </div>
+      <div class="result-box" id="result-box">
+        <h3>📄 Result Card</h3>
+        <div class="result-row"><strong>Student Name</strong><span id="res-name">Gurpreet Singh</span></div>
+        <div class="result-row"><strong>Roll Number</strong><span id="res-roll">-</span></div>
+        <div class="result-row"><strong>Programme</strong><span id="res-prog">-</span></div>
+        <div class="result-row"><strong>Examination</strong><span id="res-exam">-</span></div>
+        <div class="result-row"><strong>Total Marks</strong><span>550 / 700</span></div>
+        <div class="result-row"><strong>Percentage</strong><span>78.57%</span></div>
+        <div class="result-row"><strong>Result</strong><span style="color:#1a7a3a;font-weight:700">✅ PASS — First Division</span></div>
+        <br>
+        <button class="submit-btn" onclick="showModal('Download Started','Your result card PDF is being prepared for download.')">📥 Download Result Card</button>
+      </div>
+      <h3 class="section-heading" style="margin-top:20px">Recent Result Notifications</h3>
+      <table class="data-table">
+        <thead><tr><th>Examination</th><th>Semester</th><th>Declared On</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Even Semester Theory 2025</td><td>2nd, 4th, 6th</td><td>01 Jun 2025</td><td><button class="ic-btn" onclick="document.getElementById('result-exam').value='Even Semester (April 2025)'">Check Now</button></td></tr>
+          <tr><td>Odd Semester Theory 2024</td><td>1st, 3rd, 5th</td><td>15 Jan 2025</td><td><button class="ic-btn" onclick="document.getElementById('result-exam').value='Odd Semester (Nov 2024)'">Check Now</button></td></tr>
+          <tr><td>Supplementary Exam 2024</td><td>All</td><td>20 Sep 2024</td><td><button class="ic-btn" onclick="document.getElementById('result-exam').value='Supplementary (Jul 2024)'">Check Now</button></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: INSTITUTES ===================== -->
+  <div class="page" id="page-institutes">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Institutes</div>
+    <div class="page-hero"><h2>Affiliated Institutes</h2><p>Government and private polytechnic institutes across Punjab</p></div>
+    <div class="inner-content">
+      <div class="inst-filters">
+        <select id="inst-district"><option value="">All Districts</option><option>Amritsar</option><option>Ludhiana</option><option>Patiala</option><option>Jalandhar</option><option>Bathinda</option><option>Mohali</option></select>
+        <select id="inst-type"><option value="">All Types</option><option>Government</option><option>Private</option><option>ITI</option></select>
+        <input type="text" id="inst-search" placeholder="Search institute name...">
+        <button onclick="filterInstitutes()">Search</button>
+      </div>
+      <table class="data-table" id="inst-table">
+        <thead><tr><th>#</th><th>Institute Name</th><th>District</th><th>Type</th><th>Programmes</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Govt. Polytechnic College, Amritsar</td><td>Amritsar</td><td>Government</td><td>Civil, Mech, EE, ECE</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>2</td><td>Govt. Polytechnic College, Ludhiana</td><td>Ludhiana</td><td>Government</td><td>Civil, Mech, CS, IT</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>3</td><td>Govt. Polytechnic College, Patiala</td><td>Patiala</td><td>Government</td><td>Civil, EE, Mech, ECE</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>4</td><td>Punjab Technical Institute, Jalandhar</td><td>Jalandhar</td><td>Private</td><td>CS, IT, Mech</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>5</td><td>Apeejay Polytechnic College, Jalandhar</td><td>Jalandhar</td><td>Private</td><td>Civil, CS, ECE</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>6</td><td>Govt. Polytechnic College, Bathinda</td><td>Bathinda</td><td>Government</td><td>Civil, EE, Mech</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>7</td><td>ITI Ludhiana (Govt.)</td><td>Ludhiana</td><td>ITI</td><td>Electrician, Fitter, Welder</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>8</td><td>ITI Amritsar (Govt.)</td><td>Amritsar</td><td>ITI</td><td>Electrician, COPA, Fitter</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+          <tr><td>9</td><td>Chandigarh Polytechnic, Mohali</td><td>Mohali</td><td>Private</td><td>CS, IT, Civil</td><td><span class="badge badge-yellow">Provisional</span></td></tr>
+          <tr><td>10</td><td>Guru Nanak Dev Polytechnic, Patiala</td><td>Patiala</td><td>Private</td><td>Mech, EE, ECE</td><td><span class="badge badge-green">Affiliated</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: DOWNLOADS ===================== -->
+  <div class="page" id="page-downloads">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Downloads</div>
+    <div class="page-hero"><h2>Downloads</h2><p>Forms, prospectus, syllabus, and official documents</p></div>
+    <div class="inner-content">
+      <h3 class="section-heading">Admission Forms & Prospectus</h3>
+      <ul class="download-list">
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">📄</div><div><div class="dl-title">Prospectus 2025-26 (Diploma Programmes)</div><div class="dl-meta">PDF • 4.2 MB • Updated: Mar 2025</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Prospectus 2025-26 is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">📝</div><div><div class="dl-title">Online Application Form 2025-26</div><div class="dl-meta">PDF • 1.1 MB • Updated: Apr 2025</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Application Form is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">🏆</div><div><div class="dl-title">Scholarship Form (Post-Matric SC/BC)</div><div class="dl-meta">PDF • 800 KB • Updated: Feb 2025</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Scholarship Form is downloading...')">📥 Download</button></li>
+      </ul>
+      <h3 class="section-heading">Syllabus & Curriculum</h3>
+      <ul class="download-list">
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">📚</div><div><div class="dl-title">Revised Syllabus — Civil Engineering (2024 Scheme)</div><div class="dl-meta">PDF • 2.8 MB</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Civil Engineering Syllabus is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">📚</div><div><div class="dl-title">Revised Syllabus — Computer Science & Engg. (2024 Scheme)</div><div class="dl-meta">PDF • 3.1 MB</div></div></div><button class="dl-btn" onclick="showModal('Download Started','CS Syllabus is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">📚</div><div><div class="dl-title">Revised Syllabus — Mechanical Engineering (2024 Scheme)</div><div class="dl-meta">PDF • 2.5 MB</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Mechanical Syllabus is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">📚</div><div><div class="dl-title">Revised Syllabus — Electrical Engineering (2024 Scheme)</div><div class="dl-meta">PDF • 2.3 MB</div></div></div><button class="dl-btn" onclick="showModal('Download Started','EE Syllabus is downloading...')">📥 Download</button></li>
+      </ul>
+      <h3 class="section-heading">Examination Related</h3>
+      <ul class="download-list">
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">🗓️</div><div><div class="dl-title">Examination Schedule 2025-26</div><div class="dl-meta">PDF • 500 KB • Updated: Apr 2025</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Exam Schedule is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">🔄</div><div><div class="dl-title">Re-evaluation Application Form</div><div class="dl-meta">PDF • 300 KB</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Re-evaluation Form is downloading...')">📥 Download</button></li>
+        <li class="download-item"><div class="dl-info"><div class="dl-icon">🎓</div><div><div class="dl-title">Migration Certificate Application Form</div><div class="dl-meta">PDF • 250 KB</div></div></div><button class="dl-btn" onclick="showModal('Download Started','Migration Certificate Form is downloading...')">📥 Download</button></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: TENDERS ===================== -->
+  <div class="page" id="page-tenders">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Tenders</div>
+    <div class="page-hero"><h2>Tenders</h2><p>Active and recent tenders published by PSBTE&IT</p></div>
+    <div class="inner-content">
+      <div class="alert alert-info">📢 All tenders must be submitted through the official e-procurement portal of Govt. of Punjab.</div>
+      <h3 class="section-heading">Active Tenders</h3>
+      <div class="tender-card"><div><div class="tender-title">E-Tender No. PSBTE/2025/04 — Supply of Computer Hardware</div><div class="tender-meta">Published: 01 Apr 2025 | Last Date: 30 Apr 2025 | EMD: ₹50,000</div></div><div class="tender-actions"><button class="tender-btn t-view" onclick="showModal('Tender Details','E-Tender PSBTE/2025/04 for Supply of Computer Hardware. EMD: ₹50,000. Eligibility: Registered vendor with GST. Contact: procurement@punjabteched.com')">View</button><button class="tender-btn t-download" onclick="showModal('Download Started','Tender document is downloading...')">📥 Download</button></div></div>
+      <div class="tender-card"><div><div class="tender-title">E-Tender No. PSBTE/2025/05 — Printing of Diplomas & Certificates 2025</div><div class="tender-meta">Published: 05 Apr 2025 | Last Date: 05 May 2025 | EMD: ₹1,00,000</div></div><div class="tender-actions"><button class="tender-btn t-view" onclick="showModal('Tender Details','E-Tender PSBTE/2025/05 for Printing of Diplomas & Certificates. EMD: ₹1,00,000. Eligibility: Approved printing firms with ISO certification.')">View</button><button class="tender-btn t-download" onclick="showModal('Download Started','Tender document is downloading...')">📥 Download</button></div></div>
+      <div class="tender-card"><div><div class="tender-title">E-Tender No. PSBTE/2025/06 — Annual Maintenance Contract for Servers</div><div class="tender-meta">Published: 10 Apr 2025 | Last Date: 10 May 2025 | EMD: ₹25,000</div></div><div class="tender-actions"><button class="tender-btn t-view" onclick="showModal('Tender Details','E-Tender PSBTE/2025/06 for Annual Maintenance of Servers. EMD: ₹25,000. Eligibility: OEM-authorized service partner.')">View</button><button class="tender-btn t-download" onclick="showModal('Download Started','Tender document is downloading...')">📥 Download</button></div></div>
+      <h3 class="section-heading" style="margin-top:20px">Closed Tenders</h3>
+      <table class="data-table">
+        <thead><tr><th>Tender No.</th><th>Description</th><th>Closed On</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>PSBTE/2025/01</td><td>Furniture Supply for New Offices</td><td>15 Feb 2025</td><td><span class="badge badge-red">Closed</span></td></tr>
+          <tr><td>PSBTE/2025/02</td><td>Security Services Contract</td><td>01 Mar 2025</td><td><span class="badge badge-red">Closed</span></td></tr>
+          <tr><td>PSBTE/2025/03</td><td>Website Redesign and Hosting</td><td>20 Mar 2025</td><td><span class="badge badge-red">Closed</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================== PAGE: CONTACT ===================== -->
+  <div class="page" id="page-contact">
+    <div class="breadcrumb"><a onclick="goPage('home')">Home</a><span>›</span> Contact Us</div>
+    <div class="page-hero"><h2>Contact Us</h2><p>Get in touch with the Board for queries and assistance</p></div>
+    <div class="inner-content">
+      <div class="contact-grid" style="margin-bottom:20px">
+        <div class="contact-card"><h4>🏢 Head Office</h4><div class="contact-detail">Punjab State Board of Technical Education<br>& Industrial Training<br>Plot No. 1-A, Sector 36-A<br>Chandigarh — 160 036<br><br>📞 0172-2614649<br>📞 0172-2614650<br>📧 info@punjabteched.com<br>🕐 Mon–Fri: 9:00 AM – 5:00 PM</div></div>
+        <div class="contact-card"><h4>🎓 Examination Section</h4><div class="contact-detail">Controller of Examinations<br>PSBTE&IT, Chandigarh<br><br>📞 0172-2614651<br>📧 exam@punjabteched.com<br><br><strong>For Result Queries:</strong><br>📞 0172-2614652<br>📧 results@punjabteched.com</div></div>
+        <div class="contact-card"><h4>📋 Admissions Section</h4><div class="contact-detail">Director of Admissions<br>PSBTE&IT, Chandigarh<br><br>📞 0172-2614653<br>📧 admissions@punjabteched.com<br><br>🕐 Helpdesk: 10 AM – 4 PM<br>(During admission season)</div></div>
+        <div class="contact-card"><h4>🏛 Affiliation Section</h4><div class="contact-detail">Deputy Secretary (Affiliation)<br>PSBTE&IT, Chandigarh<br><br>📞 0172-2614654<br>📧 affiliation@punjabteched.com<br><br>For institute affiliation and<br>recognition queries.</div></div>
+      </div>
+      <h3 class="section-heading">Send Us a Message</h3>
+      <div class="form-section">
+        <div class="form-row">
+          <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Enter your full name"></div>
+          <div class="form-group"><label>Mobile Number *</label><input type="tel" placeholder="10-digit mobile number"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="Enter your email"></div>
+          <div class="form-group"><label>Query Type *</label><select><option>Select Query Type</option><option>Admission</option><option>Examination</option><option>Result</option><option>Migration Certificate</option><option>Affiliation</option><option>General Enquiry</option></select></div>
+        </div>
+        <div class="form-row full">
+          <div class="form-group"><label>Your Message *</label><textarea placeholder="Describe your query in detail..."></textarea></div>
+        </div>
+        <button class="submit-btn" onclick="showModal('Message Sent!','Thank you for contacting us. Your query has been received. Our team will respond within 2-3 working days on your registered email.')">Send Message</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER (shared) -->
+  <div class="footer-links">
+    <div class="footer-col">
+      <h5>Quick Access</h5>
+      <a onclick="goPage('home')">Home</a>
+      <a onclick="goPage('about')">About Us</a>
+      <a onclick="goPage('admissions')">Admission 2025-26</a>
+      <a onclick="goPage('results')">Examination Results</a>
+      <a onclick="goPage('downloads')">Downloads</a>
+    </div>
+    <div class="footer-col">
+      <h5>Students Corner</h5>
+      <a onclick="goPage('admissions')">Online Application</a>
+      <a onclick="goPage('exams')">Admit Card</a>
+      <a onclick="goPage('results')">Result Portal</a>
+      <a onclick="goPage('downloads')">Scholarship</a>
+      <a onclick="goPage('contact')">Grievance Cell</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact & Help</h5>
+      <a onclick="goPage('contact')">Contact Us</a>
+      <a onclick="goPage('contact')">Feedback Form</a>
+      <a onclick="goPage('tenders')">Tenders</a>
+      <a onclick="goPage('downloads')">Downloads</a>
+      <a onclick="goPage('about')">About Board</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Punjab State Board of Technical Education & Industrial Training, Chandigarh. All Rights Reserved.</span>
+    <span>Best viewed in Chrome / Firefox at 1024×768</span>
+  </div>
+
+</div><!-- end site-wrapper -->
+
+<script>
+// PAGE NAVIGATION
+function goPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-list li').forEach(l => l.classList.remove('nav-active'));
+  document.getElementById('page-' + id).classList.add('active');
+  var navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('nav-active');
+  window.scrollTo(0, 0);
+}
+
+// BANNER SLIDER
+var cur = 0;
+var slides = document.querySelectorAll('.banner-slide');
+var dots = document.querySelectorAll('.dot');
+function goSlide(n) {
+  slides[cur].classList.remove('active');
+  dots[cur].classList.remove('active');
+  cur = n;
+  slides[cur].classList.add('active');
+  dots[cur].classList.add('active');
+}
+setInterval(function() { goSlide((cur + 1) % slides.length); }, 4000);
+
+// MODAL
+function showModal(title, msg) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-msg').textContent = msg;
+  document.getElementById('modal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('show');
+}
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ACCORDION
+function toggleAccordion(header) {
+  var body = header.nextElementSibling;
+  var span = header.querySelector('span');
+  var isOpen = body.classList.contains('open');
+  document.querySelectorAll('.accordion-body').forEach(function(b) { b.classList.remove('open'); });
+  document.querySelectorAll('.accordion-header span').forEach(function(s) { s.textContent = '+'; });
+  if (!isOpen) {
+    body.classList.add('open');
+    span.textContent = '−';
+  }
+}
+
+// RESULT
+var names = ['Gurpreet Singh','Harpreet Kaur','Manjeet Singh','Simran Rani','Rajvir Kaur','Balwinder Singh','Navneet Kaur','Jaswant Singh'];
+function showResult() {
+  var roll = document.getElementById('result-roll').value;
+  var exam = document.getElementById('result-exam').value;
+  var prog = document.getElementById('result-prog').value;
+  if (!roll || exam === 'Select Examination' || !exam || prog === 'Select Programme' || !prog) {
+    showModal('Missing Info','Please fill all fields — Roll Number, Examination, Programme, and Date of Birth.');
+    return;
+  }
+  var box = document.getElementById('result-box');
+  document.getElementById('res-roll').textContent = roll;
+  document.getElementById('res-prog').textContent = prog;
+  document.getElementById('res-exam').textContent = exam;
+  document.getElementById('res-name').textContent = names[Math.floor(Math.random() * names.length)];
+  box.style.display = 'block';
+  box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ADMIT CARD
+function handleAdmitCard() {
+  var roll = document.getElementById('admit-roll').value;
+  var dob = document.getElementById('admit-dob').value;
+  if (!roll || !dob) {
+    showModal('Missing Info', 'Please enter both Roll Number and Date of Birth.');
+    return;
+  }
+  showModal('Admit Card Ready', 'Admit card for Roll No. ' + roll + ' is being generated and will download shortly.');
+}
+
+// INSTITUTE FILTER
+function filterInstitutes() {
+  var district = document.getElementById('inst-district').value.toLowerCase();
+  var type = document.getElementById('inst-type').value.toLowerCase();
+  var search = document.getElementById('inst-search').value.toLowerCase();
+  var rows = document.querySelectorAll('#inst-table tbody tr');
+  rows.forEach(function(row) {
+    var text = row.textContent.toLowerCase();
+    var show = true;
+    if (district && !text.includes(district)) show = false;
+    if (type && !text.includes(type)) show = false;
+    if (search && !text.includes(search)) show = false;
+    row.style.display = show ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>
